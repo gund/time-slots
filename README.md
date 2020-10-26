@@ -2,6 +2,14 @@
 
 > Small library to generate slots for a date range between a time range with optional interval
 
+[![Travis CI](https://img.shields.io/travis/gund/time-slots/master.svg?maxAge=2592000)](https://travis-ci.org/gund/time-slots)
+[![Coverage](https://img.shields.io/codecov/c/github/gund/time-slots.svg?maxAge=2592000)](https://codecov.io/gh/gund/time-slots)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f5e91bdec3e93851ef95/maintainability)](https://codeclimate.com/github/gund/time-slots/maintainability)
+[![Npm](https://img.shields.io/npm/v/@gund/time-slots?maxAge=2592000)](https://npmjs.com/package/@gund/time-slots)
+[![Npm Downloads](https://img.shields.io/npm/dt/@gund/time-slots.svg?maxAge=2592000)](https://npmjs.com/package/@gund/time-slots)
+[![Licence](https://img.shields.io/npm/l/@gund/time-slots.svg?maxAge=2592000)](https://github.com/gund/time-slots/blob/master/LICENSE)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 This is a small utility library that allow you to easily generate time slots and
 also exclude from generated time slots already existing time slots.
 

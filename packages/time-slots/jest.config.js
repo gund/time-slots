@@ -12,4 +12,13 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/packages/time-slots',
+  coverageReporters: ['html', 'lcov'],
+  coverageThreshold: {
+    global: {
+      branches: 65,
+      functions: 65,
+      lines: 65,
+      statements: 65,
+    },
+  },
 };

@@ -26,7 +26,9 @@
     "help": "nx help"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.16.1"
+  },
   "devDependencies": {
     "@nrwl/cli": "10.3.1",
     "@nrwl/eslint-plugin-nx": "10.3.1",

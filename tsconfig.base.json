@@ -17,7 +17,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "time-slots": ["packages/time-slots/src/index.ts"]
+      "@gund/time-slots": ["packages/time-slots/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

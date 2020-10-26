@@ -1,5 +1,5 @@
 {
-  "name": "time-slots",
+  "name": "@gund/time-slots",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

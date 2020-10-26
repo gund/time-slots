@@ -1,90 +1,119 @@
-# TimeSlots
+# @gund/time-slots
 
-This project was generated using [Nx](https://nx.dev).
+> Small library to generate slots for a date range between a time range with optional interval
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+This is a small utility library that allow you to easily generate time slots and
+also exclude from generated time slots already existing time slots.
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+It has "zero" dependencies but requires a small set of date functions to operate
+which you can provide via `DateAdapter`.
+And there is already existing `date-fns` adapter that you can use out of the box.
 
-## Adding capabilities to your workspace
+## Install
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+```
+$ npm install @gund/time-slots
+```
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+_Optionally_ install `date-fns` if you want to use out of the box provider:
 
-Below are our core plugins:
+```
+$ npm install date-fns
+```
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+## Setup
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+First make sure to provide a small set of date functions called `DateAdapter`
+that is needed for this library to work:
 
-## Generate an application
+```js
+import { provideDateAdapter } from '@gund/time-slots';
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+provideDateAdapter(...); // Your DateAdapter is here
+```
 
-> You can use any of the plugins above to generate applications as well.
+_Optionally_ you may import and use existing `date-fns` adapter:
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+```js
+import { provideDateAdapter } from '@gund/time-slots';
+import { dateFnsAdapter } from '@gund/time-slots/date-adapter/date-fns';
 
-## Generate a library
+provideDateAdapter(dateFnsAdapter);
+```
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+## Use
 
-> You can also use any of the plugins above to generate libraries as well.
+### Generation of slots
 
-Libraries are sharable across libraries and applications. They can be imported from `@time-slots/mylib`.
+You can generate slots for a date range `DateRange` between a time range `TimeRange`
+with optional time interval `TimeInterval`:
 
-## Development server
+```js
+import { generateTimeSlots, DateRange, TimeRange } from '@gund/time-slots';
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+const slots = generateTimeSlots(
+  DateRange.fromDates(new Date(2020, 10, 15), new Date(2020, 10, 20)),
+  TimeRange.fromTimeStrings('9:00', '17:30'),
+);
 
-## Code scaffolding
+// Now slots will contain array of `TimeRange`
+// between 15.11.2020 to 20.11.2020
+// with every day from 9am till 5:30pm
+console.log(slots);
+```
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+#### With time interval
+
+To slice every day into intervals you can add `TimeInterval` argument:
+
+```js
+import {
+  generateTimeSlots,
+  DateRange,
+  TimeRange,
+  TimeInterval,
+} from '@gund/time-slots';
+
+const slots = generateTimeSlots(
+  DateRange.fromDates(new Date(2020, 10, 15), new Date(2020, 10, 16)),
+  TimeRange.fromTimeStrings('9:00', '17:30'),
+  TimeInterval.minutes(30),
+);
+
+// Now slots will contain array of `TimeRange`
+// between 15.11.2020 to 20.11.2020
+// with every day sliced in 30 mins intervals from 9am till 5:30pm
+console.log(slots);
+```
+
+### Exclusion of existing slots
+
+You can also exclude from an array of slots another array of slots.
+The exclusion of a slot will happen as long as it intersects with a slot from another array.
+
+```js
+import { excludeTimeSlots } from '@gund/time-slots';
+
+const allSlots = [...];
+const bookedSlots = [...];
+
+const availableSlots = excludeTimeSlots(allSlots, bookedSlots);
+
+// Result will have only slots from `allSlots` that
+// do not intersect with any slots in `bookedSlots`
+console.log(availableSlots);
+```
 
 ## Build
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `nx build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
 ## Understand your workspace
 
 Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.

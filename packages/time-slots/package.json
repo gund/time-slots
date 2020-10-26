@@ -1,6 +1,11 @@
 {
   "name": "@gund/time-slots",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gund/time-slots.git"
+  },
   "peerDependencies": {
     "date-fns": "^2.0.0"
   },

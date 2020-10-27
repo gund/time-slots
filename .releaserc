@@ -41,7 +41,7 @@
     [
       "@semantic-release/github",
       {
-        "assets": "dist/packages/time-slots/*.tgz"
+        "assets": "dist/*.tgz"
       }
     ]
   ]

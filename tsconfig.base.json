@@ -12,6 +12,7 @@
     "module": "esnext",
     "typeRoots": ["node_modules/@types"],
     "lib": ["esnext"],
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,

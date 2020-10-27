@@ -1,5 +1,12 @@
 # @gund/time-slots - Changelog
 
+## [1.0.2](https://github.com/gund/time-slots/compare/v1.0.1...v1.0.2) (2020-10-27)
+
+
+### Bug Fixes
+
+* **release:** publish tarball in github releases ([e3e604b](https://github.com/gund/time-slots/commit/e3e604b86d48db8ad33bf8d7289550dfba0de868))
+
 ## [1.0.1](https://github.com/gund/time-slots/compare/v1.0.0...v1.0.1) (2020-10-27)
 
 

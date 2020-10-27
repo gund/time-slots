@@ -1,5 +1,12 @@
 # @gund/time-slots - Changelog
 
+## [1.0.3](https://github.com/gund/time-slots/compare/v1.0.2...v1.0.3) (2020-10-27)
+
+
+### Bug Fixes
+
+* **date-fns:** use deep imports to reduce size of adapter ([e65fd68](https://github.com/gund/time-slots/commit/e65fd68f2df648d56ee00f96d7d5807c81ebbdbb))
+
 ## [1.0.2](https://github.com/gund/time-slots/compare/v1.0.1...v1.0.2) (2020-10-27)
 
 
